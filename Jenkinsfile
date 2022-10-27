@@ -29,7 +29,7 @@ pipeline {
          stage('Push') {
             steps {
                 echo 'pushing to dockerhub'
-                sh 'docker login -u tehilla2022 lmtv98967'
+                sh 'docker login -u tehilla2022 ilmtv98967'
                 sh 'docker push tehilla2022/todo-fe:latest'
             }
         }
