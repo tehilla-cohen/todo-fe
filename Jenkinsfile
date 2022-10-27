@@ -29,8 +29,8 @@ pipeline {
          stage('Push') {
             steps {
                 echo 'pushing to dockerhub'
-                sh 'docker login -u tehillacohen -p ilmTV98967'
-                sh 'docker push tehilla-cohen/todo-fe:latest'
+                sh 'docker login -u tehilla2022 lmtv98967'
+                sh 'docker push tehilla2022/todo-fe:latest'
             }
         }
     }
