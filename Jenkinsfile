@@ -29,7 +29,7 @@ pipeline {
          stage('Push') {
             steps {
                 echo 'pushing to dockerhub'
-                sh 'docker push tehillacohen/todo-fe:tagname'
+                sh 'docker push tehillacohen/todo-fe:latest'
             }
         }
     }
