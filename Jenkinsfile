@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'pushing to dockerhub'
                 sh 'docker login -u tehillacohen -p ilmTV98967'
-                sh 'docker push tehillacohen/fe-todo:latest'
+                sh 'docker push tehillacohen/todo-fe:latest'
             }
         }
     }
