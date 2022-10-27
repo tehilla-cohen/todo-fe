@@ -5,19 +5,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building step'
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target builder .'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest -f DockerfilePipeline --target builder .'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing step'
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target testing .'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest -f DockerfilePipeline --target testing .'
             }
         }
         stage('Delivery') {
             steps {
                 echo 'Delivery step'
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target delivery .'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest -f DockerfilePipeline --target delivery .'
             }
         }
          stage('Cleanup') {
