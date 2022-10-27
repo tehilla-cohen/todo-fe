@@ -29,7 +29,6 @@ pipeline {
          stage('Push') {
             steps {
                 echo 'pushing to dockerhub'
-                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                 sh 'docker push tehillacohen/todo-fe:latest'
             }
         }
