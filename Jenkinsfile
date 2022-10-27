@@ -2,45 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Pre-build stg') {
-            steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target pre-build .'
-            }
-        }
         stage('Build') {
             steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target build .'
+                echo 'Building step'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target builder .'
             }
         }
         stage('Test') {
             steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target test .'
+                echo 'Testing step'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target testing .'
             }
         }
-        stage('Security') {
+        stage('Delivery') {
             steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target security .'
+                echo 'Delivery step'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target delivery .'
             }
         }
-        stage('back-end') {
+         stage('Cleanup') {
             steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target back-end .'
+                echo 'Cleanup the system'
+                sh 'docker system prune'
             }
         }
-        stage('front-end') {
+         stage('Push') {
             steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target front-end .'
+                echo 'pushing to dockerhub'
+                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target delivery .'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target deploy .'
-            }    
-        }
-        stage('Post') {
-            steps {
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla:latest --target post .'
-            }
-        }                
     }
 }
