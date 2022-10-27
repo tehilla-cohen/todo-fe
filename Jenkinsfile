@@ -29,7 +29,7 @@ pipeline {
          stage('Push') {
             steps {
                 echo 'pushing to dockerhub'
-                sh 'DOCKER_BUILDKIT=1 docker build -t tehilla-cohen/todo-fe:latest --target delivery .'
+                sh 'docker push tehillacohen/todo-fe:latest'
             }
         }
     }
