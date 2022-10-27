@@ -23,7 +23,7 @@ pipeline {
          stage('Cleanup') {
             steps {
                 echo 'Cleanup the system'
-                sh 'docker system prune'
+                sh 'docker system prune -f'
             }
         }
          stage('Push') {
